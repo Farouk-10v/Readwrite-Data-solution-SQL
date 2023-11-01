@@ -1,0 +1,9 @@
+SELECT * FROM classic.sessions
+
+INSERT INTO SESSIONS
+VALUES ("9123BHJSAD87", "2022-02-09", "ppc", 6721350000000), 
+("KH4J235WE", "2022-01-09", "paid social", 5689120000000),
+("QWEGUY234", "2022-02-09", "paid social", NULL ),
+("OIHADF87234", "2022-09-30", "affiliates", 912466000000); 
+
+TRUNCATE TABLE sessions;

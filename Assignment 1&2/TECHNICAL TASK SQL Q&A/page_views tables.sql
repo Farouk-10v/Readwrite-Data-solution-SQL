@@ -1,0 +1,1 @@
+SELECT * FROM classic.page_views;
