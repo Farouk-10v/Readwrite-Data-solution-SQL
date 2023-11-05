@@ -62,3 +62,21 @@ SELECT
     running_count
 FROM PurchasesByYear
 WHERE running_count = 2;
+
+
+QUESTION 5
+What percentage of product page views were immediately followed by a cart page view?
+
+	
+	WITH PageViewsWithLeadLag AS (
+    SELECT
+        PAGE_VIEW_ID,
+        PAGE_URL,
+        LAG(PAGE_URL) OVER (PARTITION BY USER_ID ORDER BY PAGE_VIEW_TIMESTAMP) AS PreviousPage
+    FROM PAGE_VIEWS
+)
+SELECT
+    SUM(CASE WHEN PreviousPage LIKE '%/product/%' AND PAGE_URL LIKE '%/cart' THEN 1 ELSE 0 END) AS ProductToCartViews,
+    COUNT(*) AS TotalProductViews
+FROM PageViewsWithLeadLag
+WHERE PreviousPage IS NOT NULL;
